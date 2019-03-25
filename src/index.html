@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>TITLE</title>
+        <script src='./utility.js' type='text/javascript'></script>
+    </head>
+<body bgcolor="#24AF69">
+    <div id="canvasContainer"></div>
+    <script type="text/javascript">
+        'use strict';
+
+        var canvas_width = 1080,
+            canvas_height = 720;
+        const canvas = utility.canvasCreate("canvasContainer", "backgroundId", { width: canvas_width, height: canvas_height });
+        const ctx = canvas.getContext("2d");
+
+        const fontSize = 20;
+        const keyDownEvents = {};
+        function init() {
+            keyDownEvents[utility.keyCodes.space] = () => console.log('space pressed!');
+            ctx.font = fontSize + 'px Courier New';
+        }
+
+        canvas.addEventListener("mousedown", function (event) {
+            const canvas_bounds = canvas.getBoundingClientRect();
+            const x = event.clientX - canvas_bounds.left;
+            const y = event.clientY - canvas_bounds.top;
+            console.log(`onMouseDown at (${x}, ${y})`);
+        });
+
+        window.addEventListener("keydown", function (event) {
+            const keyCode = event.keyCode.toString();
+            console.log(`onKeyDown '${keyCode}'`);
+            const f = keyDownEvents[event.keyCode];
+            f && f();
+        });
+
+        function display() {
+            ctx.clearRect(0, 0, canvas_width, canvas_height);
+            ctx.strokeStyle = '#F0F8FF';
+            const textSample = "Hey, What's Up?";
+            utility.strokeText(ctx, textSample, 50, 50)
+
+            const textSampleMetrics = ctx.measureText(textSample);
+            ctx.beginPath();
+            ctx.moveTo(50, 55);
+            ctx.lineTo(50 + textSampleMetrics.width, 55);
+            ctx.stroke();
+        }
+
+        window.onload = function () {
+            init();
+            display();
+        }
+    </script>
+</body>
+</html>
