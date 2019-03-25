@@ -47,3 +47,24 @@ utility.keyCodes = {
     'rightArrow': 39,
     'downArrow': 40
 };
+
+utility.getRandomInt = function(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+};
+
+utility.padLeft = function(padValue, value, count) {
+    return (Array(count).join(padValue) + value).slice(-1 * count);
+};
+
+utility.angleFromPoints = function(x1, y1, x2, y2) {
+    let tv = x2 - x1;
+    let uv = y2 - y1;
+    let x_mult = tv > 0 ? 1 : -1;
+    let y_mult = uv > 0 ? 1 : -1;
+    uv = Math.abs(uv);
+    tv = Math.abs(tv);
+    let theta_r = Math.abs(Math.atan(uv/tv));
+    return {theta: theta_r, x_mult: x_mult, y_mult: y_mult};
+};

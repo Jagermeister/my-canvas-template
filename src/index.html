@@ -47,6 +47,14 @@
             ctx.stroke();
         }
 
+        var mainloop_updateLast = performance.now();
+        function mainLoop(nowTime) {
+            update(nowTime - mainloop_updateLast);
+            display();
+            mainloop_updateLast = nowTime;
+            requestAnimationFrame(mainLoop);
+        }
+
         window.onload = function () {
             init();
             display();
