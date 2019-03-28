@@ -8,3 +8,4 @@ Providing an entry point to canvas based prototypes.
 ## Future Features
 - Default Entity for display and animation
 - Handle layered canvas
+- Snapshot ability with all layers
