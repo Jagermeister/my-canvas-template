@@ -9,4 +9,4 @@ Providing an entry point to canvas based prototypes.
 - Default Entity for display and animation
 - Handle layered canvas
 - Snapshot ability with all layers
-- Dynamic frames 
+- Dynamic frames
